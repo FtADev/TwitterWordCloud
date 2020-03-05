@@ -29,7 +29,7 @@ words = [w.lower() for w in words]
 words = [w for w in words if w not in EN_STOPWORDS]
 
 clean_string = ','.join(words)
-wordcloud = PersianWordCloud(
+word_cloud = PersianWordCloud(
     only_persian=True,
     max_words=100,
     margin=0,

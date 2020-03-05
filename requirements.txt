@@ -2,3 +2,5 @@ numpy
 twython
 wordcloud
 persian_wordcloud
+matplotlib
+PIL

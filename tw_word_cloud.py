@@ -48,6 +48,14 @@ word_cloud = PersianWordCloud(
     background_color="White"
 ).generate(clean_string)
 
-image = wordcloud.to_image()
-image.show()
-image.save('tweet-result.png')
+f = plt.figure(figsize=(50,50))
+f.add_subplot(1,2, 1)
+plt.imshow(mask, cmap=plt.cm.gray, interpolation='bilinear')
+plt.title('Original Stencil', size=40)
+plt.axis("off")
+
+f.add_subplot(1,2, 2)
+plt.imshow(word_cloud, interpolation='bilinear')
+plt.title('Twitter Generated Cloud', size=40)
+plt.axis("off")
+plt.show()

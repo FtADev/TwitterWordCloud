@@ -1,8 +1,13 @@
 import numpy as np
+import matplotlib.pyplot as plt
+from PIL import Image
+import os
 from twython import Twython
 from wordcloud import STOPWORDS as EN_STOPWORDS
 from persian_wordcloud.wordcloud import PersianWordCloud, add_stop_words
 
+APP_KEY = os.getenv('APP_KEY')
+APP_SECRET = os.getenv('APP_SECRET')
 USERNAME = ""
 
 # Connect to Twitter
@@ -28,10 +33,13 @@ words = [w for w in words if len(w) > 2]  # ignore a, an, be, ...
 words = [w.lower() for w in words]
 words = [w for w in words if w not in EN_STOPWORDS]
 
+mask = np.array(Image.open('./github.png'))
+
 clean_string = ','.join(words)
 word_cloud = PersianWordCloud(
     only_persian=True,
     max_words=100,
+    mask=mask,
     margin=0,
     width=800,
     height=800,

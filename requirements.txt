@@ -1,0 +1,4 @@
+numpy
+twython
+wordcloud
+persian_wordcloud

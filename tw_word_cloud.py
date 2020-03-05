@@ -3,18 +3,16 @@ from twython import Twython
 from wordcloud import STOPWORDS as EN_STOPWORDS
 from persian_wordcloud.wordcloud import PersianWordCloud, add_stop_words
 
-APP_KEY = ""
-APP_SECRET = ""
 USERNAME = ""
 
-#Connect to Twitter
+# Connect to Twitter
 twitter = Twython(APP_KEY, APP_SECRET)
 
-user_timeline=twitter.get_user_timeline(screen_name=USERNAME,count=1) 
+user_timeline = twitter.get_user_timeline(screen_name=USERNAME, count=1)
 
-last_id = user_timeline[0]['id']-1
+last_id = user_timeline[0]['id'] - 1
 for i in range(16):
-    batch = twitter.get_user_timeline(screen_name=USERNAME,count=200, max_id=last_id)
+    batch = twitter.get_user_timeline(screen_name=USERNAME, count=200, max_id=last_id)
     user_timeline.extend(batch)
     last_id = user_timeline[-1]['id'] - 1
 

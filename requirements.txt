@@ -4,3 +4,4 @@ wordcloud
 persian_wordcloud
 matplotlib
 PIL
+python-dotenv

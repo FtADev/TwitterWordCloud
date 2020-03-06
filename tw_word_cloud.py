@@ -1,3 +1,4 @@
+import re
 import os
 import numpy as np
 import matplotlib.pyplot as plt
@@ -28,7 +29,8 @@ for tweets in user_timeline:
     raw_tweets.append(tweets['text'])
 
 raw_string = ''.join(raw_tweets)
-words = raw_string.split(" ")
+no_links = re.sub(r'http\S+', '', raw_string)
+words = no_links.split(" ")
 
 words = [w for w in words if len(w) > 2]  # ignore a, an, be, ...
 words = [w.lower() for w in words]

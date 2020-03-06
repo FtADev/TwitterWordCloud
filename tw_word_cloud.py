@@ -30,7 +30,8 @@ for tweets in user_timeline:
 
 raw_string = ''.join(raw_tweets)
 no_links = re.sub(r'http\S+', '', raw_string)
-words = no_links.split(" ")
+no_mention = re.sub(r'@\w*', '', no_links)
+words = no_mention.split(" ")
 
 words = [w for w in words if len(w) > 2]  # ignore a, an, be, ...
 words = [w.lower() for w in words]

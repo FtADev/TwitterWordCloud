@@ -1,14 +1,16 @@
+import os
 import numpy as np
 import matplotlib.pyplot as plt
 from PIL import Image
-import os
+from dotenv import load_dotenv
 from twython import Twython
 from wordcloud import STOPWORDS as EN_STOPWORDS
 from persian_wordcloud.wordcloud import PersianWordCloud, add_stop_words
 
+load_dotenv()
 APP_KEY = os.getenv('APP_KEY')
 APP_SECRET = os.getenv('APP_SECRET')
-USERNAME = ""
+USERNAME = os.getenv('APP_USERNAME')
 
 # Connect to Twitter
 twitter = Twython(APP_KEY, APP_SECRET)

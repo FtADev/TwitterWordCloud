@@ -12,7 +12,6 @@ APP_KEY = os.getenv('APP_KEY')
 APP_SECRET = os.getenv('APP_SECRET')
 USERNAME = os.getenv('APP_USERNAME')
 
-# Connect to Twitter
 twitter = Twython(APP_KEY, APP_SECRET)
 
 user_timeline = twitter.get_user_timeline(screen_name=USERNAME, count=1)
@@ -50,13 +49,13 @@ word_cloud = PersianWordCloud(
     background_color="White"
 ).generate(clean_string)
 
-f = plt.figure(figsize=(50,50))
-f.add_subplot(1,2, 1)
+f = plt.figure(figsize=(50, 50))
+f.add_subplot(1, 2, 1)
 plt.imshow(mask, cmap=plt.cm.gray, interpolation='bilinear')
 plt.title('Original Stencil', size=40)
 plt.axis("off")
 
-f.add_subplot(1,2, 2)
+f.add_subplot(1, 2, 2)
 plt.imshow(word_cloud, interpolation='bilinear')
 plt.title('Twitter Generated Cloud', size=40)
 plt.axis("off")

@@ -6,7 +6,7 @@ from PIL import Image
 from dotenv import load_dotenv
 from twython import Twython
 from wordcloud import STOPWORDS as EN_STOPWORDS
-from persian_wordcloud.wordcloud import PersianWordCloud, add_stop_words
+from wordcloud import WordCloud
 
 load_dotenv()
 APP_KEY = os.getenv('APP_KEY')
@@ -41,8 +41,7 @@ words = [w for w in words if w not in EN_STOPWORDS]
 mask = np.array(Image.open('./github.png'))
 
 clean_string = ','.join(words)
-word_cloud = PersianWordCloud(
-    only_persian=True,
+word_cloud = WordCloud(
     max_words=100,
     mask=mask,
     margin=0,

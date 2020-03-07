@@ -42,6 +42,7 @@ mask = np.array(Image.open('./github.png'))
 
 clean_string = ','.join(words)
 word_cloud = WordCloud(
+    font_path='./fonts/Blabeloo.ttf',
     max_words=500,
     mask=mask,
     margin=0,

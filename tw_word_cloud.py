@@ -5,8 +5,7 @@ import matplotlib.pyplot as plt
 from PIL import Image
 from dotenv import load_dotenv
 from twython import Twython
-from wordcloud import STOPWORDS as EN_STOPWORDS
-from wordcloud import WordCloud
+from wordcloud import WordCloud, STOPWORDS as EN_STOPWORDS
 
 load_dotenv()
 APP_KEY = os.getenv('APP_KEY')

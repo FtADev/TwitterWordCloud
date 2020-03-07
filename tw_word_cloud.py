@@ -42,7 +42,7 @@ mask = np.array(Image.open('./github.png'))
 
 clean_string = ','.join(words)
 word_cloud = WordCloud(
-    max_words=100,
+    max_words=500,
     mask=mask,
     margin=0,
     width=800,

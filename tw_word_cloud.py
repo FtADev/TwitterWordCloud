@@ -6,6 +6,7 @@ from PIL import Image
 from dotenv import load_dotenv
 from twython import Twython
 from wordcloud import WordCloud, STOPWORDS as EN_STOPWORDS
+from collections import Counter
 
 load_dotenv()
 APP_KEY = os.getenv('APP_KEY')
@@ -37,9 +38,11 @@ words = [w for w in words if len(w) > 2]  # ignore a, an, be, ...
 words = [w.lower() for w in words]
 words = [w for w in words if w not in EN_STOPWORDS]
 
-mask = np.array(Image.open('./github.png'))
+freq = Counter(words)
+print(freq)
 
-clean_string = ','.join(words)
+mask = np.array(Image.open('./github.jpg'))
+
 word_cloud = WordCloud(
     font_path='./fonts/Blabeloo.ttf',
     max_words=500,
@@ -50,7 +53,7 @@ word_cloud = WordCloud(
     min_font_size=1,
     max_font_size=500,
     background_color="White"
-).generate(clean_string)
+).generate_from_frequencies(freq)
 
 f = plt.figure(figsize=(50, 50))
 f.add_subplot(1, 2, 1)

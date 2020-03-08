@@ -7,6 +7,14 @@ from dotenv import load_dotenv
 from twython import Twython
 from wordcloud import WordCloud, STOPWORDS as EN_STOPWORDS
 from collections import Counter
+import random
+
+
+def grey_color_func(word, font_size, position, orientation, random_state=None,
+                    **kwargs):
+    # Colors HSL: hsl(A, B%, C%) means: "hsl(A, B%%, %d%%)" % random.randint(C, 100)
+    return "hsl(1, 100%%, %d%%)" % random.randint(0, 100)
+
 
 load_dotenv()
 APP_KEY = os.getenv('APP_KEY')
@@ -54,6 +62,8 @@ word_cloud = WordCloud(
     max_font_size=500,
     background_color="White"
 ).generate_from_frequencies(freq)
+
+word_cloud.recolor(color_func=grey_color_func, random_state=3)
 
 f = plt.figure(figsize=(50, 50))
 f.add_subplot(1, 2, 1)

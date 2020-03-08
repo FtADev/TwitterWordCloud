@@ -41,7 +41,7 @@ words = [w for w in words if w not in EN_STOPWORDS]
 freq = Counter(words)
 print(freq)
 
-mask = np.array(Image.open('./github.png'))
+mask = np.array(Image.open('./twitter.jpg'))
 
 word_cloud = WordCloud(
     font_path='./fonts/Blabeloo.ttf',

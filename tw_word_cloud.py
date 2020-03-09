@@ -46,6 +46,7 @@ stops = codecs.open('persian_stopword', encoding='utf-8').read().split('\n')
 words = [w for w in words if len(w) > 2]  # ignore a, an, be, ...
 words = [w.lower() for w in words]
 words = [w for w in words if w not in EN_STOPWORDS]
+words = [w.replace('rt', '') for w in words]
 words = [w for w in words if w not in stops]
 
 mask = np.array(Image.open('./twitter.jpg'))

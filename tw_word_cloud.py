@@ -11,11 +11,8 @@ def main():
     raw_tweets = get_tweets(timeline)
     words = clean_tweets(raw_tweets)
     mask = get_image(image_path)
-    word_cloud = create_word_cloud(font_path,
-                                   max_word,
-                                   mask,
-                                   words
-                                   )
+    word_cloud = create_word_cloud(font_path, max_word,
+                                   mask, words)
     show_image(word_cloud)
     save_image(word_cloud)
 

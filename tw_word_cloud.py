@@ -65,14 +65,7 @@ word_cloud = WordCloud(
 
 word_cloud.recolor(color_func=grey_color_func, random_state=3)
 
-f = plt.figure(figsize=(50, 50))
-f.add_subplot(1, 2, 1)
-plt.imshow(mask, cmap=plt.cm.gray, interpolation='bilinear')
-plt.title('Original Stencil', size=40)
-plt.axis("off")
-
-f.add_subplot(1, 2, 2)
-plt.imshow(word_cloud, interpolation='bilinear')
-plt.title('Twitter Generated Cloud', size=40)
-plt.axis("off")
+plt.figure(figsize=(10, 10))
+plt.imshow(word_cloud, interpolation="bilinear")
 plt.show()
+word_cloud.to_file("my_word_cloud.png")

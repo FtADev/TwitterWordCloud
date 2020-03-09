@@ -46,11 +46,9 @@ words = [w for w in words if len(w) > 2]  # ignore a, an, be, ...
 words = [w.lower() for w in words]
 words = [w for w in words if w not in EN_STOPWORDS]
 
-freq = Counter(words)
-print(freq)
-
 mask = np.array(Image.open('./twitter.jpg'))
 
+clean_string = ','.join(words)
 word_cloud = WordCloud(
     font_path='./fonts/Blabeloo.ttf',
     max_words=500,
@@ -61,7 +59,7 @@ word_cloud = WordCloud(
     min_font_size=1,
     max_font_size=500,
     background_color="White"
-).generate_from_frequencies(freq)
+).generate(clean_string)
 
 word_cloud.recolor(color_func=grey_color_func, random_state=3)
 

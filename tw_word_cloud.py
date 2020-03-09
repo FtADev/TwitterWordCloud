@@ -13,7 +13,7 @@ import codecs
 def grey_color_func(word, font_size, position, orientation, random_state=None,
                     **kwargs):
     # Colors HSL: hsl(A, B%, C%) means: "hsl(A, B%%, %d%%)" % random.randint(C, 100)
-    return "hsl(1, 100%%, %d%%)" % random.randint(0, 100)
+    return "hsl(208, 59%%, %d%%)" % random.randint(14, 100)
 
 
 load_dotenv()

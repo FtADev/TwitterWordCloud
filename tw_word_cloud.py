@@ -8,7 +8,7 @@ from twython import Twython
 from wordcloud import WordCloud, STOPWORDS as EN_STOPWORDS
 from collections import Counter
 import random
-
+import codecs
 
 def grey_color_func(word, font_size, position, orientation, random_state=None,
                     **kwargs):
@@ -42,9 +42,11 @@ no_mention = re.sub(r'@\w*', '', no_links)
 no_hashtag = re.sub(r'#\w*', '', no_mention)
 words = no_hashtag.split(" ")
 
+stops = codecs.open('persian_stopword', encoding='utf-8').read().split('\n')
 words = [w for w in words if len(w) > 2]  # ignore a, an, be, ...
 words = [w.lower() for w in words]
 words = [w for w in words if w not in EN_STOPWORDS]
+words = [w for w in words if w not in stops]
 
 mask = np.array(Image.open('./twitter.jpg'))
 

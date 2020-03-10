@@ -33,7 +33,7 @@ def account_switcher(argument):
 
 def connect_twitter():
     have_dev_account = raw_input("Do you have a developer twitter account?[y/n] ")
-    account_switcher(have_dev_account)
+    return account_switcher(have_dev_account)
 
 
 def get_user_timeline(twitter):

@@ -62,8 +62,36 @@ def remove_mentions(raw_string):
     return re.sub(r'@\w*', '', raw_string)
 
 
-def remove_others(word_list):
-    return [w.replace('RT', '') for w in word_list]
+def remove_hashtags(raw_string):
+    return re.sub(r'#\w*', '', raw_string)
+
+
+def remove_emoji(raw_string):
+    emoji_pattern = re.compile("["
+                               u"\U0001F600-\U0001F64F"  # emoticons
+                               u"\U0001F300-\U0001F5FF"  # symbols & pictographs
+                               u"\U0001F680-\U0001F6FF"  # transport & map symbols
+                               u"\U0001F1E0-\U0001F1FF"  # flags (iOS)
+                               u"\U00002702-\U000027B0"
+                               u"\U000024C2-\U0001F251"
+                               u"\U0001f926-\U0001f937"
+                               u'\U00010000-\U0010ffff'
+                               u"\u2640-\u2642"
+                               u"\u2600-\u2B55"
+                               u"\u200d"
+                               u"\u23cf"
+                               u"\u23e9"
+                               u"\u231a"
+                               u"\u3030"
+                               u"\ufe0f"
+                               u"\u2069"
+                               u"\u2066"
+                               u"\u2068"
+                               u"\u2067"
+                               "]+",
+                               flags=re.UNICODE)
+
+    return emoji_pattern.sub(r'', raw_string)
 
 
 def remove_stop_words(word_list):
@@ -73,12 +101,20 @@ def remove_stop_words(word_list):
     return words
 
 
-def remove_hashtags(raw_string):
-    return re.sub(r'#\w*', '', raw_string)
+def remove_others(word_list):
+    return [w.replace('RT', '') for w in word_list]
 
 
-def get_image(image_path):
-    return np.array(Image.open(image_path))
+def clean_tweets(raw_tweets):
+    raw_string = ''.join(raw_tweets)
+    raw_string = remove_links(raw_string)
+    raw_string = remove_mentions(raw_string)
+    raw_string = remove_hashtags(raw_string)
+    raw_string = remove_emoji(raw_string)
+    words = raw_string.split(" ")
+    words = remove_others(words)
+    words = remove_stop_words(words)
+    return ','.join(words)
 
 
 def get_custom_font():
@@ -115,6 +151,10 @@ def max_word_switcher(argument):
 def get_max_word():
     answer = input("Use default maximum word(500 words)? [y/n] ")
     return max_word_switcher(answer)
+
+
+def get_image(image_path):
+    return np.array(Image.open(image_path))
 
 
 def get_custom_mask():
@@ -188,54 +228,11 @@ def change_color(word_cloud):
         print("Invalid Color")
 
 
-def save_image(word_cloud):
-    word_cloud.to_file("my_word_cloud.png")
-
-
 def show_image(word_cloud):
     plt.figure(figsize=(10, 10))
     plt.imshow(word_cloud, interpolation="bilinear")
     plt.show()
 
 
-def remove_emoji(raw_string):
-    emoji_pattern = re.compile("["
-                               u"\U0001F600-\U0001F64F"  # emoticons
-                               u"\U0001F300-\U0001F5FF"  # symbols & pictographs
-                               u"\U0001F680-\U0001F6FF"  # transport & map symbols
-                               u"\U0001F1E0-\U0001F1FF"  # flags (iOS)
-                               u"\U00002702-\U000027B0"
-                               u"\U000024C2-\U0001F251"
-                               u"\U0001f926-\U0001f937"
-                               u'\U00010000-\U0010ffff'
-                               u"\u200d"
-                               u"\u2640-\u2642"
-                               u"\u2600-\u2B55"
-                               u"\u23cf"
-                               u"\u23e9"
-                               u"\u231a"
-                               u"\u3030"
-                               u"\ufe0f"
-                               u"\u2069"
-                               u"\u2066"
-                               u"\u2068"
-                               u"\u2067"
-                               "]+", flags=re.UNICODE)
-
-    return emoji_pattern.sub(r'', raw_string)
-
-
-def clean_tweets(raw_tweets):
-    raw_string = ''.join(raw_tweets)
-    raw_string = remove_links(raw_string)
-    raw_string = remove_mentions(raw_string)
-    raw_string = remove_hashtags(raw_string)
-    raw_string = remove_emoji(raw_string)
-    words = raw_string.split(" ")
-    words = remove_others(words)
-    words = remove_stop_words(words)
-    return ','.join(words)
-
-# words = [w for w in words if len(w) > 2]  # ignore a, an, be, ...
-# words = [w.lower() for w in words]
-# tweet = re.sub(r'ن?می[‌]\S+','', tweet)
+def save_image(word_cloud):
+    word_cloud.to_file("my_word_cloud.png")

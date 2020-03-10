@@ -117,6 +117,24 @@ def get_max_word():
     return max_word_switcher(answer)
 
 
+def get_custom_mask():
+    return raw_input("Enter image path: ")
+
+
+def mask_switcher(argument):
+    switcher = {
+        "y": "./twitter.jpg",
+        "n": get_custom_mask(),
+    }
+    func = switcher.get(argument, lambda: "Invalid answer")
+    return func()
+
+
+def get_mask():
+    answer = raw_input("Use default image?[y/n]")
+    return mask_switcher(answer)
+
+
 def create_word_cloud(mask, words):
     return WordCloud(
         font_path=get_font(),

@@ -36,7 +36,7 @@ def account_switcher(argument):
 
 def connect_twitter():
     if i_am_tired:
-        answer = os.getenv('have_acc')
+        answer = os.getenv('HAVE_ACC')
     else:
         answer = input("Do you have a developer twitter account? [y/n] ")
     return account_switcher(answer)
@@ -44,7 +44,7 @@ def connect_twitter():
 
 def get_user_timeline(twitter):
     if i_am_tired:
-        username = os.getenv('username')
+        username = os.getenv('TW_USERNAME')
     else:
         username = input("Enter username: ")
     user_timeline = twitter.get_user_timeline(screen_name=username, count=1)
@@ -128,7 +128,7 @@ def clean_tweets(raw_tweets):
 
 def get_custom_font():
     if i_am_tired:
-        return os.getenv('font_path')
+        return os.getenv('FONT_PATH')
     else:
         return input("Enter font path: ")
 
@@ -144,7 +144,7 @@ def font_switcher(argument):
 
 def get_font():
     if i_am_tired:
-        answer = os.getenv('use_default_font')
+        answer = os.getenv('USE_DEFAULT_FONT')
     else:
         answer = input("Use default font? [y/n] ")
     return font_switcher(answer)
@@ -152,7 +152,7 @@ def get_font():
 
 def get_custom_max_word():
     if i_am_tired:
-        return int(os.getenv('max_word'))
+        return int(os.getenv('MAX_WORD'))
     else:
         return eval(input("Enter number of maximum word: "))
 
@@ -168,7 +168,7 @@ def max_word_switcher(argument):
 
 def get_max_word():
     if i_am_tired:
-        answer = os.getenv('use_default_max_word')
+        answer = os.getenv('USE_DEFAULT_MAX_WORD')
     else:
         answer = input("Use default maximum word(500 words)? [y/n] ")
     return max_word_switcher(answer)
@@ -180,7 +180,7 @@ def get_image(image_path):
 
 def get_custom_mask():
     if i_am_tired:
-        return os.getenv('image_path')
+        return os.getenv('IMAGE_PATH')
     else:
         return input("Enter image path: ")
 
@@ -196,7 +196,7 @@ def mask_switcher(argument):
 
 def get_mask():
     if i_am_tired:
-        answer = os.getenv('use_default_mask')
+        answer = os.getenv('USE_DEFAULT_MASK')
     else:
         answer = input("Use default image? [y/n] ")
     image_path = mask_switcher(answer)
@@ -243,7 +243,7 @@ def yellow_color_func(word, font_size,
 
 def change_color(word_cloud):
     if i_am_tired:
-        argument = os.getenv('color_num')
+        argument = os.getenv('COLOR_NUM')
     else:
         argument = input("Choose color: 1.Blue 2.Red 3.Green 4.Yellow: ")
     if argument == "1":  # Blue

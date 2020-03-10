@@ -13,6 +13,7 @@ def main():
     mask = get_image(image_path)
     word_cloud = create_word_cloud(font_path, max_word,
                                    mask, words)
+    change_color(word_cloud)
     show_image(word_cloud)
     save_image(word_cloud)
 

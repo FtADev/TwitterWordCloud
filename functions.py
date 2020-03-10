@@ -11,16 +11,6 @@ import random
 import codecs
 
 
-def grey_color_func(word, font_size, position, orientation, random_state=None,
-                    **kwargs):
-    # Colors HSL: hsl(A, B%, C%) means: "hsl(A, B%%, %d%%)" % random.randint(C, 100)
-    return "hsl(208, 59%%, %d%%)" % random.randint(14, 100)
-
-
-def change_color(word_cloud):
-    word_cloud.recolor(color_func=grey_color_func, random_state=3)
-
-
 def connect_with_dev_acc():
     load_dotenv()
     APP_KEY = os.getenv('APP_KEY')
@@ -107,6 +97,16 @@ def get_image(image_path):
 
 def get_font():
     print(a)
+
+
+def grey_color_func(word, font_size, position, orientation, random_state=None,
+                    **kwargs):
+    # Colors HSL: hsl(A, B%, C%) means: "hsl(A, B%%, %d%%)" % random.randint(C, 100)
+    return "hsl(208, 59%%, %d%%)" % random.randint(14, 100)
+
+
+def change_color(word_cloud):
+    word_cloud.recolor(color_func=grey_color_func, random_state=3)
 
 
 def save_image(word_cloud):

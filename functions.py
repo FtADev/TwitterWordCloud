@@ -10,9 +10,12 @@ from collections import Counter
 import random
 import codecs
 
+i_am_tired = True
+
+load_dotenv()
+
 
 def connect_with_dev_acc():
-    load_dotenv()
     app_key = os.getenv('APP_KEY')
     app_secret = os.getenv('APP_SECRET')
     return Twython(app_key, app_secret)
@@ -32,12 +35,18 @@ def account_switcher(argument):
 
 
 def connect_twitter():
-    answer = input("Do you have a developer twitter account? [y/n] ")
+    if i_am_tired:
+        answer = os.getenv('have_acc')
+    else:
+        answer = input("Do you have a developer twitter account? [y/n] ")
     return account_switcher(answer)
 
 
 def get_user_timeline(twitter):
-    username = input("Enter username: ")
+    if i_am_tired:
+        username = os.getenv('username')
+    else:
+        username = input("Enter username: ")
     user_timeline = twitter.get_user_timeline(screen_name=username, count=1)
     last_id = user_timeline[0]['id'] - 1
     for i in range(16):
@@ -118,7 +127,10 @@ def clean_tweets(raw_tweets):
 
 
 def get_custom_font():
-    return input("Enter font path: ")
+    if i_am_tired:
+        return os.getenv('font_path')
+    else:
+        return input("Enter font path: ")
 
 
 def font_switcher(argument):
@@ -131,12 +143,18 @@ def font_switcher(argument):
 
 
 def get_font():
-    answer = input("Use default font? [y/n] ")
+    if i_am_tired:
+        answer = os.getenv('use_default_font')
+    else:
+        answer = input("Use default font? [y/n] ")
     return font_switcher(answer)
 
 
 def get_custom_max_word():
-    return eval(input("Enter number of maximum word: "))
+    if i_am_tired:
+        return int(os.getenv('max_word'))
+    else:
+        return eval(input("Enter number of maximum word: "))
 
 
 def max_word_switcher(argument):
@@ -149,7 +167,10 @@ def max_word_switcher(argument):
 
 
 def get_max_word():
-    answer = input("Use default maximum word(500 words)? [y/n] ")
+    if i_am_tired:
+        answer = os.getenv('use_default_max_word')
+    else:
+        answer = input("Use default maximum word(500 words)? [y/n] ")
     return max_word_switcher(answer)
 
 
@@ -158,7 +179,10 @@ def get_image(image_path):
 
 
 def get_custom_mask():
-    return input("Enter image path: ")
+    if i_am_tired:
+        return os.getenv('image_path')
+    else:
+        return input("Enter image path: ")
 
 
 def mask_switcher(argument):
@@ -171,7 +195,10 @@ def mask_switcher(argument):
 
 
 def get_mask():
-    answer = input("Use default image? [y/n] ")
+    if i_am_tired:
+        answer = os.getenv('use_default_mask')
+    else:
+        answer = input("Use default image? [y/n] ")
     image_path = mask_switcher(answer)
     return get_image(image_path)
 
@@ -215,7 +242,10 @@ def yellow_color_func(word, font_size,
 
 
 def change_color(word_cloud):
-    argument = input("Choose color: 1.Blue 2.Red 3.Green 4.Yellow: ")
+    if i_am_tired:
+        argument = os.getenv('color_num')
+    else:
+        argument = input("Choose color: 1.Blue 2.Red 3.Green 4.Yellow: ")
     if argument == "1":  # Blue
         word_cloud.recolor(color_func=blue_color_func, random_state=3)
     elif argument == "2":  # Red

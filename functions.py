@@ -37,7 +37,7 @@ def connect_twitter():
 
 
 def get_user_timeline(twitter):
-    username = os.getenv('APP_USERNAME')
+    username = raw_input("Enter username: ")
     user_timeline = twitter.get_user_timeline(screen_name=username, count=1)
     last_id = user_timeline[0]['id'] - 1
     for i in range(16):

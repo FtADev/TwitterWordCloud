@@ -150,14 +150,42 @@ def create_word_cloud(words):
     ).generate(words)
 
 
-def grey_color_func(word, font_size, position, orientation, random_state=None,
-                    **kwargs):
-    # Colors HSL: hsl(A, B%, C%) means: "hsl(A, B%%, %d%%)" % random.randint(C, 100)
-    return "hsl(208, 59%%, %d%%)" % random.randint(14, 100)
+def blue_color_func(word, font_size,
+                    position, orientation,
+                    random_state=None, **kwargs):
+    return "hsl(202, 100%%, %d%%)" % random.randint(0, 50)
+
+
+def red_color_func(word, font_size,
+                   position, orientation,
+                   random_state=None, **kwargs):
+    return "hsl(0, 100%%, %d%%)" % random.randint(0, 50)
+
+
+def green_color_func(word, font_size,
+                     position, orientation,
+                     random_state=None, **kwargs):
+    return "hsl(100, 100%%, %d%%)" % random.randint(0, 50)
+
+
+def yellow_color_func(word, font_size,
+                      position, orientation,
+                      random_state=None, **kwargs):
+    return "hsl(55, 100%%, %d%%)" % random.randint(0, 50)
 
 
 def change_color(word_cloud):
-    word_cloud.recolor(color_func=grey_color_func, random_state=3)
+    argument = input("Choose color: 1.Blue 2.Red 3.Green 4.Yellow: ")
+    if argument == "1":  # Blue
+        word_cloud.recolor(color_func=blue_color_func, random_state=3)
+    elif argument == "2":  # Red
+        word_cloud.recolor(color_func=red_color_func, random_state=3)
+    elif argument == "3":  # Green
+        word_cloud.recolor(color_func=green_color_func, random_state=3)
+    elif argument == "4":  # Yellow
+        word_cloud.recolor(color_func=yellow_color_func, random_state=3)
+    else:
+        print("Invalid Color")
 
 
 def save_image(word_cloud):

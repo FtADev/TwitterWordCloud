@@ -95,8 +95,36 @@ def get_image(image_path):
     return np.array(Image.open(image_path))
 
 
+def get_custom_font():
+    return raw_input("Enter font path: ")
+
+
+def font_switcher(argument):
+    switcher = {
+        "y": "./fonts/Blabeloo.ttf",
+        "n": get_custom_font(),
+    }
+    func = switcher.get(argument, lambda: "Invalid answer")
+    return func()
+
+
 def get_font():
-    print(a)
+    answer = raw_input("Use default font?[y/n]")
+    return font_switcher(answer)
+
+
+def create_word_cloud(mask, words):
+    return WordCloud(
+        font_path=get_font(),
+        max_words=get_max_word(),
+        mask=mask,
+        margin=0,
+        width=800,
+        height=800,
+        min_font_size=1,
+        max_font_size=500,
+        background_color="White"
+    ).generate(words)
 
 
 def grey_color_func(word, font_size, position, orientation, random_state=None,

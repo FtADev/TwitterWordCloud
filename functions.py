@@ -13,9 +13,9 @@ import codecs
 
 def connect_with_dev_acc():
     load_dotenv()
-    APP_KEY = os.getenv('APP_KEY')
-    APP_SECRET = os.getenv('APP_SECRET')
-    return Twython(APP_KEY, APP_SECRET)
+    app_key = os.getenv('APP_KEY')
+    app_secret = os.getenv('APP_SECRET')
+    return Twython(app_key, app_secret)
 
 
 def connect_without_dev_acc():

@@ -77,20 +77,6 @@ def remove_hashtags(raw_string):
     return re.sub(r'#\w*', '', raw_string)
 
 
-def create_word_cloud(font_path, max_word, mask, words):
-    return WordCloud(
-        font_path=font_path,
-        max_words=max_word,
-        mask=mask,
-        margin=0,
-        width=800,
-        height=800,
-        min_font_size=1,
-        max_font_size=500,
-        background_color="White"
-    ).generate(words)
-
-
 def get_image(image_path):
     return np.array(Image.open(image_path))
 
@@ -111,6 +97,24 @@ def font_switcher(argument):
 def get_font():
     answer = raw_input("Use default font?[y/n]")
     return font_switcher(answer)
+
+
+def get_custom_max_word():
+    return input("Enter number of maximum word: ")
+
+
+def max_word_switcher(argument):
+    switcher = {
+        "y": 500,
+        "n": get_custom_max_word(),
+    }
+    func = switcher.get(argument, lambda: "Invalid answer")
+    return func()
+
+
+def get_max_word():
+    answer = raw_input("Use default maximum word(500 words)?[y/n]")
+    return max_word_switcher(answer)
 
 
 def create_word_cloud(mask, words):

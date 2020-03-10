@@ -10,7 +10,7 @@ from collections import Counter
 import random
 import codecs
 
-i_am_tired = True
+i_am_tired = False
 
 load_dotenv()
 

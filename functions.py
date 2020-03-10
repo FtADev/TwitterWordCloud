@@ -21,11 +21,29 @@ def change_color(word_cloud):
     word_cloud.recolor(color_func=grey_color_func, random_state=3)
 
 
-def connect_twitter():
+def connect_with_dev_acc():
     load_dotenv()
     APP_KEY = os.getenv('APP_KEY')
     APP_SECRET = os.getenv('APP_SECRET')
     return Twython(APP_KEY, APP_SECRET)
+
+
+def connect_without_dev_acc():
+    print('haha')
+
+
+def account_switcher(argument):
+    switcher = {
+        "y": connect_with_dev_acc(),
+        "n": connect_without_dev_acc(),
+    }
+    func = switcher.get(argument, lambda: "Invalid answer")
+    return func()
+
+
+def connect_twitter():
+    have_dev_account = raw_input("Do you have a developer twitter account?[y/n] ")
+    account_switcher(have_dev_account)
 
 
 def get_user_timeline(twitter):

@@ -23,21 +23,21 @@ def connect_without_dev_acc():
 
 
 def account_switcher(argument):
-    switcher = {
-        "y": connect_with_dev_acc(),
-        "n": connect_without_dev_acc(),
-    }
-    func = switcher.get(argument, lambda: "Invalid answer")
-    return func()
+    if argument == "y":
+        return connect_with_dev_acc()
+    elif argument == "n":
+        return connect_without_dev_acc()
+    else:
+        print("Invalid")
 
 
 def connect_twitter():
-    have_dev_account = raw_input("Do you have a developer twitter account?[y/n] ")
-    return account_switcher(have_dev_account)
+    answer = input("Do you have a developer twitter account? [y/n] ")
+    return account_switcher(answer)
 
 
 def get_user_timeline(twitter):
-    username = raw_input("Enter username: ")
+    username = input("Enter username: ")
     user_timeline = twitter.get_user_timeline(screen_name=username, count=1)
     last_id = user_timeline[0]['id'] - 1
     for i in range(16):
@@ -82,64 +82,65 @@ def get_image(image_path):
 
 
 def get_custom_font():
-    return raw_input("Enter font path: ")
+    return input("Enter font path: ")
 
 
 def font_switcher(argument):
-    switcher = {
-        "y": "./fonts/Blabeloo.ttf",
-        "n": get_custom_font(),
-    }
-    func = switcher.get(argument, lambda: "Invalid answer")
-    return func()
+    if argument == "y":
+        return "./fonts/Blabeloo.ttf"
+    elif argument == "n":
+        return get_custom_font()
+    else:
+        print("Invalid")
 
 
 def get_font():
-    answer = raw_input("Use default font?[y/n]")
+    answer = input("Use default font? [y/n] ")
     return font_switcher(answer)
 
 
 def get_custom_max_word():
-    return input("Enter number of maximum word: ")
+    return eval(input("Enter number of maximum word: "))
 
 
 def max_word_switcher(argument):
-    switcher = {
-        "y": 500,
-        "n": get_custom_max_word(),
-    }
-    func = switcher.get(argument, lambda: "Invalid answer")
-    return func()
+    if argument == "y":
+        return 500
+    elif argument == "n":
+        return get_custom_max_word()
+    else:
+        print("Invalid")
 
 
 def get_max_word():
-    answer = raw_input("Use default maximum word(500 words)?[y/n]")
+    answer = input("Use default maximum word(500 words)? [y/n] ")
     return max_word_switcher(answer)
 
 
 def get_custom_mask():
-    return raw_input("Enter image path: ")
+    return input("Enter image path: ")
 
 
 def mask_switcher(argument):
-    switcher = {
-        "y": "./twitter.jpg",
-        "n": get_custom_mask(),
-    }
-    func = switcher.get(argument, lambda: "Invalid answer")
-    return func()
+    if argument == "y":
+        return "./twitter.jpg"
+    elif argument == "n":
+        return get_custom_mask()
+    else:
+        print("Invalid")
 
 
 def get_mask():
-    answer = raw_input("Use default image?[y/n]")
-    return mask_switcher(answer)
+    answer = input("Use default image? [y/n] ")
+    image_path = mask_switcher(answer)
+    return get_image(image_path)
 
 
-def create_word_cloud(mask, words):
+def create_word_cloud(words):
     return WordCloud(
         font_path=get_font(),
         max_words=get_max_word(),
-        mask=mask,
+        mask=get_mask(),
         margin=0,
         width=800,
         height=800,
@@ -213,3 +214,4 @@ def get_username():
 
 # words = [w for w in words if len(w) > 2]  # ignore a, an, be, ...
 # words = [w.lower() for w in words]
+# tweet = re.sub(r'ن?می[‌]\S+','', tweet)

@@ -236,10 +236,6 @@ def clean_tweets(raw_tweets):
     words = remove_stop_words(words)
     return ','.join(words)
 
-
-def get_username():
-    print(a)
-
 # words = [w for w in words if len(w) > 2]  # ignore a, an, be, ...
 # words = [w.lower() for w in words]
 # tweet = re.sub(r'ن?می[‌]\S+','', tweet)

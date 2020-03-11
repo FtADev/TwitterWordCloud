@@ -2,8 +2,9 @@
 
 Explore on your tweets and create a picture by your most common words!
 
-<img src="twitter-red.png" />
+<img src="cloud-red-bl.png" />
 <img src="twitter-blue.png" />
+<img src="cloud-green-ts.png" />
 
 ## Creat Your Cloud
 

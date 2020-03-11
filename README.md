@@ -8,7 +8,7 @@ Explore on your tweets and create a picture of your most common words!
   <img src="cloud-green-ts.png" />
 </p>
 
-## Creat Your Cloud
+## Create Your Cloud
 
 First of all, create a `.env` file exactly like `.env.example` file.
 

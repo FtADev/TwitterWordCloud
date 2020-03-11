@@ -38,7 +38,7 @@ def connect_twitter():
     if i_am_tired:
         answer = os.getenv('HAVE_ACC')
     else:
-        answer = input("Do you have a developer twitter account? [y/n] ")
+        answer = input("Do you have a twitter developer account? [y/n] ")
     return account_switcher(answer)
 
 

@@ -10,14 +10,14 @@ Explore on your tweets and create a picture by your most common words!
 
 First of all create a `.env` file exactly like `.env.example` file.
 
-You might have a developer twitter account to run this project (if you don't have, don't worry!
+You might have a twitter developer account to run this project (if you don't have, don't worry!
 I will add another way to connect to twitter without a dev account, soon ;) )
 
 You should just add your **APP_KEY** and **APP_SECRET** to `.env` and run the project!
 
 Answer the question like below:
 
-    Do you have a developer twitter account? [y/n] y
+    Do you have a twitter developer account? [y/n] y
     Enter username: MyUsername
     Use default font? [y/n] n 
     Enter font path: ./fonts/Roya.ttf   # You can add your own font under fonts directory

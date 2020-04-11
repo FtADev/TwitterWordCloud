@@ -22,8 +22,8 @@ def connect_with_dev_acc():
 
 
 def connect_without_dev_acc():
-    print('haha')
-
+    print('Sorry! You can not continue without that :(')
+    exit()
 
 def account_switcher(argument):
     if argument == "y":
